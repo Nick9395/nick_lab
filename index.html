@@ -1,0 +1,71 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nick lab</title>
+    <link rel="stylesheet" href="application.css" />
+    <script src="application.js" defer></script>
+  </head>
+
+  <body>
+    <!-- 背景画像レイヤー -->
+    <div class="background" aria-hidden="true"></div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+      <nav class="nav" aria-label="メインナビゲーション">
+        <ul class="nav__list">
+          <!-- data-menu 属性でどのメニューを開くかを管理 -->
+          <li><a href="#" data-menu="top">top</a></li>
+          <li><a href="#" data-menu="portfolio">portfolio</a></li>
+          <li><a href="#" data-menu="about">about</a></li>
+          <li><a href="#" data-menu="contact">contact</a></li>
+
+          <!-- 外部リンク（SNS） -->
+          <li>
+            <a
+              href="https://x.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X(Twitter)へ移動"
+            >
+              <img src="images/x.png" alt="" width="24" height="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://note.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="noteへ移動"
+            >
+              <img src="images/note.png" alt="" width="24" height="24" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/Nick9395"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHubへ移動"
+            >
+              <img src="images/github.png" alt="" width="24" height="24" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- サイドバー（メニュー展開時に表示） -->
+    <aside class="sidebar" id="sidebar" aria-label="サブメニュー">
+      <ul id="sidebarMenu" class="sidebar__menu"></ul>
+    </aside>
+
+    <!-- メインコンテンツ表示エリア -->
+    <main class="main" id="mainContent">
+      <p id="contentText" class="main__text"></p>
+    </main>
+  </body>
+</html>
