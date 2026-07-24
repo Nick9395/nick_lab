@@ -6,19 +6,21 @@
   box-sizing: border-box;
 }
 
-/* ==== カスタムプロパティ（CSS変数） ==== */
 :root {
   /* --- カラー --- */
   --color-bg-header: #151515;
   --color-bg-sidebar: #000000;
   --color-text-light: #ffffff;
   --color-border-main: #ffffff;
-  --color-link-hover: 0.7;        /* img の opacity 値として利用 */
+  --color-link-hover: 0.7;        /* img の opacity 値として */
 
   /* --- レイアウト --- */
-  --header-height:     64px;       /* ヘッダーの高さ（サイドバー位置計算に使い回す） */
+  --header-height:     64px;       /* ヘッダーの高さ */
   --sidebar-width:     260px;
   --sidebar-padding:   20px;
+
+  --top-icon-width: 24;
+  --top-icon-hight: 24;
 
   /* --- トランジション --- */
   --transition-speed:  0.3s;
@@ -30,9 +32,7 @@ body {
   margin: 0;
 }
 
-/* ==== 背景画像レイヤー
-   - position: fixed + inset: 0 で画面全体を覆う
-   - z-index: -1 で他の要素の裏に配置する ===== */
+/*  背景画像レイヤー  */
 .background {
   position: fixed;
   inset: 0; /* top/right/bottom/left: 0 の一括指定 */
@@ -44,7 +44,7 @@ body {
   background-repeat: no-repeat;
 }
 
-/* ==== ヘッダー ==== */
+/*  ヘッダー  */
 .header {
   position: fixed;
   top: 0;
@@ -58,7 +58,7 @@ body {
   background-color: var(--color-bg-header);
 }
 
-/* ナビゲーション */
+/* ナビゲーション(ヘッダーのアイコン */
 .nav__list {
   list-style: none;
   margin: 0;
@@ -86,9 +86,7 @@ body {
   opacity: var(--color-link-hover);
 }
 
-/* ==== サイドバー
-   - 初期状態は left: -サイドバー幅 で画面外に隠す
-   - .active クラスが付くと left: 0 になりスライドインする ==== */
+/*  サイドバー　(画面左側 */
 .sidebar {
   position: fixed;
   top: var(--header-height);
@@ -96,9 +94,6 @@ body {
   width: var(--sidebar-width);          /* ← 100% を元に戻す */
   height: calc(100dvh - var(--header-height));
   padding: var(--sidebar-padding);
-
-  /* display: flex と gap: 0 は削除 */
-
   background-color: var(--color-bg-sidebar);
   color: var(--color-text-light);
   transition: left var(--transition-speed) ease;
@@ -113,7 +108,6 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  /* width と flex-shrink は不要なので削除 */
 }
 
 .sidebar a {
@@ -130,11 +124,9 @@ body {
   opacity: 0.7;
 }
 
-/* ==== コンテンツボックス
-   - サイドバーの右隣に表示されるダークカラーのボックス
+/*  コンテンツボックス（サイドバーの右に表示されるダークカラーのボックス
    - 初期状態は非表示（opacity: 0 + pointer-events: none）
-   - .active クラスが付くとフェードインして表示される
-   - top / left はヘッダーとサイドバーに被らない位置を指定 ==== */
+   - .active クラスが付くとフェードインして表示 */
 .main {
   flex: 1;                        /* ← 残りの幅をすべて使う */
   padding: 24px 32px;
@@ -169,4 +161,10 @@ body {
 
 .main__text {
   margin: 0;
+  padding: 10px 20px;
+}
+
+.top-icon-size {
+  width: var(--top-icon-width);
+  height: var(--top-icon-hight);
 }
