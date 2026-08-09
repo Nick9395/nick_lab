@@ -38,7 +38,7 @@ body {
   inset: 0; /* top/right/bottom/left: 0 の一括指定 */
   z-index: -1;
 
-  background-image: url("images/image_1.png");
+  background-image: url("images/top_image.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -69,10 +69,46 @@ body {
   gap: 30px;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav a {
   color: var(--color-text-light);
   text-decoration: none;
   font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+/* ブランド（アバター + サイト名）を他リンクと差別化 */
+.nav__brand {
+  gap: 10px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  transition:
+    border-color var(--transition-speed) ease,
+    background-color var(--transition-speed) ease,
+    opacity var(--transition-speed) ease;
+}
+
+.nav__brand span {
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.nav__brand img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.nav__brand:hover {
+  opacity: var(--color-link-hover);
+  border-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 /* アイコン画像 */
@@ -80,9 +116,10 @@ body {
   display: block; /* インライン要素の謎の余白を消す */
   width: 24px;
   height: 24px;
+  flex-shrink: 0;
 }
 
-.nav a:hover img {
+.nav a:not(.nav__brand):hover img {
   opacity: var(--color-link-hover);
 }
 

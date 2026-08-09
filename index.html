@@ -4,7 +4,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nick lab</title>
+    <title>Nick Lab</title>
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+    />
+    <meta
+      name="keywords"
+      content="Nick Lab, Nick, ポートフォリオ, Webアプリ, ドット画伯, ガンバリクエスト"
+    />
+    <meta name="author" content="Nick" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#151515" />
+    <link rel="canonical" href="https://nick9395.github.io/nick_lab/" />
+    <link rel="icon" href="images/avatar.webp" type="image/webp" />
+
+    <!-- Open Graph（Facebook, LinkedIn など） -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nick Lab" />
+    <meta property="og:title" content="Nick Lab" />
+    <meta
+      property="og:description"
+      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+    />
+    <meta property="og:url" content="https://nick9395.github.io/nick_lab/" />
+    <meta
+      property="og:image"
+      content="https://nick9395.github.io/nick_lab/images/top_image.webp"
+    />
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nick Lab" />
+    <meta
+      name="twitter:description"
+      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://nick9395.github.io/nick_lab/images/top_image.webp"
+    />
+
     <link rel="stylesheet" href="application.css" />
     <script src="application.js" defer></script>
   </head>
@@ -18,7 +61,12 @@
       <nav class="nav" aria-label="メインナビゲーション">
         <ul class="nav__list">
           <!-- data-menu 属性でどのメニューを開くかを管理 -->
-          <li><a href="#" data-menu="top">top</a></li>
+          <li>
+            <a href="#" data-menu="top" class="nav__brand" aria-label="Nick Lab">
+              <img src="images/avatar.webp" alt="" class="top-icon-size" />
+              <span>Nick Lab</span>
+            </a>
+          </li>
           <li><a href="#" data-menu="portfolio">portfolio</a></li>
           <li><a href="#" data-menu="about">about</a></li>
           <li><a href="#" data-menu="contact">contact</a></li>
@@ -31,7 +79,7 @@
               rel="noopener noreferrer"
               aria-label="X(Twitter)へ移動"
             >
-              <img src="images/x.png" alt="" class="top-icon-size" />
+              <img src="images/x-logo.webp" alt="" class="top-icon-size" />
             </a>
           </li>
           <li>
@@ -41,7 +89,7 @@
               rel="noopener noreferrer"
               aria-label="noteへ移動"
             >
-              <img src="images/note.png" alt="" class="top-icon-size" />
+              <img src="images/note-logo.webp" alt="" class="top-icon-size" />
             </a>
           </li>
           <li>
@@ -51,7 +99,7 @@
               rel="noopener noreferrer"
               aria-label="GitHubへ移動"
             >
-              <img src="images/github.png" alt="" class="top-icon-size" />
+              <img src="images/github-logo.webp" alt="" class="top-icon-size" />
             </a>
           </li>
         </ul>
