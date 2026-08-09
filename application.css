@@ -13,6 +13,8 @@
   --color-text-light: #ffffff;
   --color-border-main: #ffffff;
   --color-link-hover: 0.7;        /* img の opacity 値として */
+  --color-content-link: #e2b857;  /* コンテンツ内リンク */
+  --color-content-link-hover: #f0d07a;
 
   /* --- レイアウト --- */
   --header-height:     64px;       /* ヘッダーの高さ */
@@ -199,6 +201,22 @@ body {
 .main__text {
   margin: 0;
   padding: 10px 20px;
+}
+
+/* 連絡先・アプリ利用リンクなど、本文中の導線 */
+.main a {
+  color: var(--color-content-link);
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition-speed) ease;
+}
+
+.main a:hover {
+  color: var(--color-content-link-hover);
 }
 
 .top-icon-size {

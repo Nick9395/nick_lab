@@ -27,7 +27,7 @@ fetch("data.json")
  - 同じメニューを再クリックしたら閉じる（トグル）
  - 別のメニューならサイドバーを更新して開く
  - @param {string} menuKey - DATA のキー名（例: "about"） */
-function openMenu(menuKey) {
+function openMenu(menuKey, contentKey = null) {
   if (menuKey === "top") {
     closeAll();
     return;
@@ -36,8 +36,8 @@ function openMenu(menuKey) {
   // DATAに存在しないキーは何もしない
   if (!DATA[menuKey]) return;
 
-  // 同じメニューをもう一度クリックしたら閉じる
-  if (state.menu === menuKey) {
+  // 同じメニューをもう一度クリックしたら閉じる（コンテンツ指定がある場合は遷移を優先）
+  if (state.menu === menuKey && !contentKey) {
     closeAll();
     return;
   }
@@ -51,6 +51,11 @@ function openMenu(menuKey) {
   sidebar.classList.add("active");
   mainContent.classList.remove("active");
   contentText.textContent = "";
+
+  // コンテンツキーが指定されていれば、その項目を開く
+  if (contentKey) {
+    showContent(contentKey);
+  }
 }
 
 /* サイドバーのメニュー項目を描画する
@@ -116,6 +121,18 @@ nav.addEventListener("click", (event) => {
   openMenu(menuKey);
 });
 
+// メインコンテンツ内のメニュー遷移リンク（例: 連絡先への導線）
+mainContent.addEventListener("click", (event) => {
+  const link = event.target.closest("a[data-menu]");
+  if (!link) return;
+
+  // openMenu 内でコンテンツが差し替わるとクリック元要素がDOMから消える。
+  // その後 document の外側クリック判定が誤作動しないよう伝播を止める。
+  event.preventDefault();
+  event.stopPropagation();
+  openMenu(link.dataset.menu, link.dataset.content || null);
+});
+
 // サイドバー内のリンククリック
 sidebar.addEventListener("click", (event) => {
   const link = event.target.closest("a");
@@ -127,6 +144,9 @@ sidebar.addEventListener("click", (event) => {
 
 // サイドバー・ナビ・コンテンツボックス以外をクリックしたら閉じる
 document.addEventListener("click", (event) => {
+  // クリック中にDOMから外れた要素（コンテンツ差し替え時など）は無視する
+  if (!(event.target instanceof Node) || !event.target.isConnected) return;
+
   const isInsideSidebar = sidebar.contains(event.target);
   const isInsideNav     = nav.contains(event.target);
   const isInsideMain    = mainContent.contains(event.target);
