@@ -7,7 +7,7 @@
     "content": {
       "site": [
         "<h1>このサイトについて</h1>",
-        "<p>軽量で趣あるアプリ置き場を目指して。このwebサイト(以下「当サイト」)はNick(以下「当方」)が運営しております。<br>当サイトをご利用される場合、以下の規約に同意したものとさせていただきます</p>",
+        "<p>速くて軽くて安いアプリ置き場を目指して。このwebサイト(以下「当サイト」)はNick(以下「当方」)が運営しております。<br>当サイトをご利用される場合、以下の規約に同意したものとさせていただきます</p>",
         "<br><h2>【目的】</h2>",
         "<p>当サイトは当方のポートフォリオ保管用サイトです。当サイトに掲載されているwebアプリサービス(以下「当webアプリ」)は当方の学習目的で制作されており、原則として誰でも無料でご利用いただけます。</p><br>",
         "<h2>【著作権と禁止事項】</h2>",
@@ -37,14 +37,14 @@
       { "key": "work2", "label": "ドット画伯" },
       { "key": "work3", "label": "ガンバリクエスト" },
       { "key": "work4", "label": "地球破壊バクダン" },
-      { "key": "work5", "label": "シフト作成アプリ" }
+      { "key": "work5", "label": "シフト メーカー" }
     ],
     "content": {
       "work1": [
         "<h1>アプリ名: ドット画伯(試作版)</h1>",
         "<p>昔なつかしいレトロゲームのようなドット絵を描けるアプリ。",
           "<br>自分で手を動かして作品を作る楽しみをご体験ください。",
-          "<br>※JSの修行およびミニアプリ開発イベント用に2日で作ったアプリのため、完成版のご利用を推奨します。<br>",
+          "<br>※JSの修行&ミニアプリ開発イベント用に2日で作ったアプリのため、完成版のご利用を推奨します。<br>",
           "<br>使用技術:JavaScript, HTML, CSS",
           "<br>デプロイ: GitHub Pages",
           "<br>データベース: なし",
@@ -63,12 +63,13 @@
           "<br>試作版にはなかったトレーシング機能(png画像などを写し描きできる機能)が追加。カラーパレットも修正。",
           "<br>広報誌用の画像素材に。",
           "<br>小学校の夏休み課題に。",
-          "<br>その他趣味の創作など使い道はいろいろ。",
-          "<br>AIがなんでも作ってくれるこの時代、あえて手を動かして作品を作る楽しみをご体験ください。<br>",
+          "<br>他趣味の創作活動に。",
+          "<br>使い道はいろいろ。",
+          "<br>AIがなんでも作ってくれるご時世に、あえて手を動かして作品を作る楽しみをご体験ください。<br>",
           "<br><img src='images/dg_sample.webp' alt='ドット画伯のサンプル画像' style='max-width:100%;height:auto;'><br>",
 
-          "<br>使用技術:JavaScript, HTML, CSS",
-          "<br>デプロイ: GitHub Pages",
+          "<br>使用技術:JavaScript, HTML, CSS, Cloudflare Pages, Cursor",
+          "<br>デプロイ: Cloudflare Pages",
           "<br>データベース: なし",
           "<br>フロントエンド: JavaScript, HTML, CSS",
           "<br>バックエンド: なし<br>",
@@ -115,6 +116,21 @@
           "<br>利用料: 無料<br><br>",
         "<a href='https://nick9395.github.io/earth_destroying_bomb/'",
         "target='_blank'>地球破壊バクダンを利用する</a>"
+      ],
+      "work5": [
+        "<h1>アプリ名: シフト メーカー</h1>",
+        "<p>シフト表を作成するアプリ ※現在作成中<br>",
+          "<br><img src='images/sm_sample.webp' alt='シフト メーカーのサンプル画像' style='max-width:100%;height:auto;'><br>",
+          "<br>使用技術: Ruby 3, Rails 8(APIモード), JavaScript(React, TypeScript, Vite), CSS(Tailwind CSS), PostgreSQL",
+          "<br>デプロイ: フロントエンド Cloudflare Pages, バックエンド Northflank, データベース Neon.com",
+          "<br>データベース: PostgreSQL",
+          "<br>フロントエンド: JavaScript(React, TypeScript, Vite), CSS(Tailwind CSS), HTML",
+          "<br>バックエンド: Rails 8(APIモード)<br>",
+          "<br>制作者: Nick",
+          "<br>利用料: 無料<br><br>",
+        "<a href='https://shift-maker-cfd.pages.dev/'",
+        "target='_blank'>シフト メーカーを利用する</a><br>",
+        "<br><strong>【サンプル用アカウント】</strong><br> メールアドレス: aaaa@aaaa<br> パスワード: 11111111"
       ]
     }
   },
