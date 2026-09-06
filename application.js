@@ -45,6 +45,14 @@ syncHeaderHeight();
 
 /* 畝マップを描画する
  - @param {{ key: string, label: string, mark: string, stage: string }[]} fields */
+function renderMark(mark) {
+  if (!mark) return "";
+  if (/\.(png|jpe?g|webp|gif)$/i.test(mark)) {
+    return `<img src="${mark}" alt="" class="plot__mark-img">`;
+  }
+  return mark;
+}
+
 function renderFields(fields) {
   fieldMap.innerHTML = fields
     .map((field) => {
@@ -56,7 +64,7 @@ function renderFields(fields) {
           data-field="${field.key}"
           aria-pressed="false"
         >
-          <span class="plot__mark" aria-hidden="true">${field.mark}</span>
+          <span class="plot__mark" aria-hidden="true">${renderMark(field.mark)}</span>
           <span class="plot__name">${field.label}</span>
         </button>
       `;

@@ -348,6 +348,18 @@ body.has-sidebar .farm__sign {
   line-height: 1;
 }
 
+.plot__mark-img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.farm.is-listing .plot__mark-img {
+  width: 36px;
+  height: 36px;
+}
+
 .plot__name {
   font-weight: 700;
   line-height: 1.4;
