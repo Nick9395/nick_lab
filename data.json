@@ -1,15 +1,60 @@
 {
+  "fields": [
+    {
+      "key": "work2",
+      "label": "ドット画伯",
+      "crop": "トマト",
+      "mark": "🍅",
+      "stage": "harvest"
+    },
+    {
+      "key": "work3",
+      "label": "ガンバリクエスト",
+      "crop": "かぼちゃ",
+      "mark": "🎃",
+      "stage": "harvest"
+    },
+    {
+      "key": "work5",
+      "label": "シフト メーカー",
+      "crop": "苗",
+      "mark": "🌿",
+      "stage": "seedling"
+    },
+    {
+      "key": "work1",
+      "label": "ドット画伯(試作版)",
+      "crop": "ミニトマト",
+      "mark": "🌱",
+      "stage": "sprout"
+    },
+    {
+      "key": "work4",
+      "label": "地球破壊バクダン",
+      "crop": "ラディッシュ",
+      "mark": "🌱",
+      "stage": "sprout"
+    },
+    {
+      "key": "vacant",
+      "label": "空き地",
+      "crop": "準備中",
+      "mark": "🪵",
+      "stage": "empty"
+    }
+  ],
+
   "about": {
     "menu": [
       { "key": "site",   "label": "このサイトについて" },
-      { "key": "author", "label": "制作者について" }
+      { "key": "author", "label": "管理人について" }
     ],
     "content": {
       "site": [
         "<h1>このサイトについて</h1>",
-        "<p>速くて軽くて安いアプリ置き場を目指して。このwebサイト(以下「当サイト」)はNick(以下「当方」)が運営しております。<br>当サイトをご利用される場合、以下の規約に同意したものとさせていただきます</p>",
+        "<p>小さなアイディアを種にして、アプリに育てる場所です。育ったものから順に、アプリ一覧に並べています。<br>このwebサイト(以下「当サイト」)はNick(以下「当方」)が運営しております。<br>当サイトをご利用される場合、以下の規約に同意したものとさせていただきます</p>",
         "<br><h2>【目的】</h2>",
-        "<p>当サイトは当方のポートフォリオ保管用サイトです。当サイトに掲載されているwebアプリサービス(以下「当webアプリ」)は当方の学習目的で制作されており、原則として誰でも無料でご利用いただけます。</p><br>",
+        "<p>当サイトは当方が種をまいたWebアプリを育て、作品を並べるポートフォリオサイトです。当サイトに掲載されているwebアプリサービス(以下「当webアプリ」)は当方の学習目的で制作されており、原則として誰でも無料でご利用いただけます。</p><br>",
         "<h2>【著作権と禁止事項】</h2>",
         "<p>当サイトに含まれる全てのコンテンツに含まれる著作権は当方にあります。<br>当方の承諾なしに当webアプリの複製、当webアプリが提供するサービスを転用して対価を得る行為、当サイトの運営を害する行為、その他当方が不適切と判断する行為などを禁止します。</p><br>",
         "<h2>【個人情報の取り扱い】</h2>",
@@ -18,11 +63,11 @@
         "<p>当サイト及び当webサイトは学習目的で作成されていることから、事前承諾なしにサービス内容を変更または停止若しくは終了する場合がございます。その結果生じる損害に対し、当方は一切の責任を負いません。<br>また登録されたデータが破損・消滅した場合についても同様に責任を負いません。ご了承の上でサービスをご利用ください。</p><br>",
         "<h2>【その他】</h2>",
         "<p>当方が作成したwebアプリの商用利用、若しくはアプリの開発依頼をしたい方は、お手数ですが当方までお問い合わせください。</p>",
-        "<br><p><a href='#' data-menu='contact' data-content='name'>連絡先</a></p>"
+        "<br><p><a href='#' data-menu='contact' data-content='name'>お問い合わせ</a></p>"
       ],
       "author": [
-        "<h1>制作者について</h1>",
-        "<h2>【ハンドルネーム】<br> Nick</h2>",
+        "<h1>管理人について</h1>",
+        "<h2>【管理人】<br> Nick</h2>",
         "<h2>【国籍】<br> 日本</h2>",
         "<h2>【使ったことがある言語など】<br> Ruby on Rails, JavaScript(Stimulus, TypeScript, React), HTML,CSS(Tailwind CSS, bootstrap), など</h2>",
         "<h2>【使ったことがあるもの】<br> GitHub, Docker,Fly, Render, GitHub Pages, Neon, Cloudflare Pages, AWS, Figma, Cursor, など</h2>",
@@ -37,7 +82,8 @@
       { "key": "work2", "label": "ドット画伯" },
       { "key": "work3", "label": "ガンバリクエスト" },
       { "key": "work4", "label": "地球破壊バクダン" },
-      { "key": "work5", "label": "シフト メーカー" }
+      { "key": "work5", "label": "シフト メーカー" },
+      { "key": "vacant", "label": "空き地" }
     ],
     "content": {
       "work1": [
@@ -131,17 +177,21 @@
         "<a href='https://shift-maker-cfd.pages.dev/'",
         "target='_blank'>シフト メーカーを利用する</a><br>",
         "<br><strong>【サンプル用アカウント】</strong><br> メールアドレス: aaaa@aaaa<br> パスワード: 11111111"
+      ],
+      "vacant": [
+        "<h1>空き地</h1>",
+        "<p>次の種を準備しています。小さなアイディアが芽を出すのを待っています。</p>"
       ]
     }
   },
 
   "contact": {
     "menu": [
-      { "key": "name", "label": "連絡先" }
+      { "key": "name", "label": "お問い合わせ" }
     ],
     "content": {
       "name": [
-        "<h1>メールアドレス</h1>",
+        "<h1>お問い合わせ</h1>",
         "<p><a href='mailto:blow_by_blow_8412@outlook.com'>blow_by_blow_8412@outlook.com</a></p>"
       ]
     }
