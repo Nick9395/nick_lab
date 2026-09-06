@@ -7,68 +7,117 @@
 }
 
 :root {
-  /* --- カラー --- */
-  --color-bg-header: #151515;
-  --color-bg-sidebar: #000000;
-  --color-text-light: #ffffff;
-  --color-border-main: #ffffff;
-  --color-link-hover: 0.7;        /* img の opacity 値として */
-  --color-content-link: #e2b857;  /* コンテンツ内リンク */
-  --color-content-link-hover: #f0d07a;
+  /* --- 牧場カラー --- */
+  --color-soil: #5c4033;
+  --color-soil-dark: #3d2a22;
+  --color-wood: #8b5e3c;
+  --color-wood-deep: #6f4a2e;
+  --color-wood-dark: #5c3d28;
+  --color-cream: #f4e8d0;
+  --color-cream-dark: #e8d5b0;
+  --color-paper: #f7efdc;
+  --color-sage: #6b8f4e;
+  --color-text: #3d2a22;
+  --color-text-soft: #6a5344;
+  --color-text-light: #f4e8d0;
+  --color-harvest: #c45c26;
+  --color-sprout: #7a9e4e;
+  --color-seedling: #4f7d3a;
+  --color-empty: #9a8b78;
+  --color-gold: #e8c36a;
+  --color-link-hover: 0.75;
+  --color-content-link: #8b4513;
+  --color-content-link-hover: #c45c26;
 
   /* --- レイアウト --- */
-  --header-height:     64px;       /* ヘッダーの高さ */
-  --sidebar-width:     260px;
-  --sidebar-padding:   20px;
+  --header-height: 64px;
+  --sidebar-width: 260px;
+  --sidebar-padding: 20px;
 
   --top-icon-width: 24;
   --top-icon-hight: 24;
 
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino,
+    "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-body: "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic UI",
+    "Yu Gothic", sans-serif;
+
   /* --- トランジション --- */
-  --transition-speed:  0.3s;
+  --transition-speed: 0.3s;
 }
 
 /* ==== ベース ==== */
 
 body {
   margin: 0;
+  min-height: 100dvh;
+  color: var(--color-text);
+  font-family: var(--font-body);
 }
 
 /*  背景画像レイヤー  */
 .background {
   position: fixed;
-  inset: 0; /* top/right/bottom/left: 0 の一括指定 */
+  inset: 0;
   z-index: -1;
 
-  background-image: url("images/top_image.webp");
+  background-image: url("images/ranch_bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(244, 232, 208, 0.18) 0%, transparent 28%),
+    linear-gradient(180deg, transparent 48%, rgba(61, 42, 34, 0.28) 100%);
 }
 
 /*  ヘッダー  */
 .header {
   position: fixed;
   top: 0;
+  z-index: 20;
   width: 100%;
-  height: var(--header-height);
+  min-height: var(--header-height);
   padding: 0 40px;
 
   display: flex;
   align-items: center;
 
-  background-color: var(--color-bg-header);
+  color: var(--color-cream);
+  background: linear-gradient(180deg, #9a6a42 0%, var(--color-wood-deep) 100%);
+  box-shadow: 0 3px 0 var(--color-soil-dark);
+}
+
+/* ヘッダー下の柵 */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-wood-dark) 0 16px,
+    var(--color-cream-dark) 16px 20px
+  );
 }
 
 /* ナビゲーション(ヘッダーのアイコン */
 .nav__list {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px 0;
+  flex-wrap: wrap;
 
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 22px 28px;
 }
 
 .nav {
@@ -77,7 +126,7 @@ body {
 }
 
 .nav a {
-  color: var(--color-text-light);
+  color: var(--color-cream);
   text-decoration: none;
   font-weight: bold;
   display: inline-flex;
@@ -85,12 +134,17 @@ body {
   line-height: 1;
 }
 
+.nav a:not(.nav__brand):not(.nav__social):hover {
+  color: var(--color-gold);
+}
+
 /* ブランド（アバター + サイト名）を他リンクと差別化 */
 .nav__brand {
   gap: 10px;
   padding: 6px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(244, 232, 208, 0.55);
   border-radius: 4px;
+  background-color: rgba(61, 42, 34, 0.18);
   transition:
     border-color var(--transition-speed) ease,
     background-color var(--transition-speed) ease,
@@ -100,22 +154,38 @@ body {
 .nav__brand span {
   letter-spacing: 0.04em;
   white-space: nowrap;
+  font-family: var(--font-display);
 }
 
 .nav__brand img {
   border-radius: 50%;
   object-fit: cover;
+  background: var(--color-cream);
 }
 
 .nav__brand:hover {
   opacity: var(--color-link-hover);
-  border-color: rgba(255, 255, 255, 0.85);
-  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-gold);
+  background-color: rgba(61, 42, 34, 0.32);
+}
+
+.nav__social {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-cream);
+  justify-content: center;
+  overflow: hidden;
+}
+
+.nav__social img {
+  width: 18px;
+  height: 18px;
 }
 
 /* アイコン画像 */
 .nav img {
-  display: block; /* インライン要素の謎の余白を消す */
+  display: block;
   width: 24px;
   height: 24px;
   flex-shrink: 0;
@@ -125,16 +195,177 @@ body {
   opacity: var(--color-link-hover);
 }
 
+/*  牧場看板と畝マップ  */
+.farm {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  padding: calc(var(--header-height) + 36px) 24px 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.farm.is-listing {
+  align-items: stretch;
+  justify-content: flex-start;
+  width: min(420px, calc(42% - 24px));
+  padding-top: calc(var(--header-height) + 24px);
+  padding-left: 24px;
+  padding-right: 12px;
+}
+
+.farm.is-listing .farm__sign {
+  width: 100%;
+  max-width: none;
+  padding: 16px 20px;
+}
+
+.farm.is-listing .farm__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.farm__sign {
+  max-width: 640px;
+  padding: 22px 36px 24px;
+  text-align: center;
+  color: var(--color-cream);
+  background:
+    linear-gradient(180deg, rgba(139, 94, 60, 0.92) 0%, rgba(92, 61, 40, 0.94) 100%);
+  border: 4px solid var(--color-cream-dark);
+  box-shadow:
+    0 0 0 3px var(--color-wood-dark),
+    8px 10px 0 rgba(61, 42, 34, 0.28);
+}
+
+/* このサイトについて・お問い合わせ表示中は看板を隠す */
+body.has-sidebar .farm__sign {
+  display: none;
+}
+
+.farm__eyebrow {
+  margin: 0 0 8px;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  color: var(--color-gold);
+}
+
+.farm__title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+}
+
+.farm__lead {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--color-cream-dark);
+}
+
+.fields {
+  width: min(1080px, 100%);
+  display: none;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.fields.is-visible {
+  display: grid;
+}
+
+.farm.is-listing .fields,
+.farm.is-listing .fields.is-visible {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.farm.is-listing .plot {
+  min-height: 0;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.plot {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 188px;
+  padding: 20px 16px;
+  cursor: pointer;
+  color: var(--color-cream);
+  text-align: center;
+  font: inherit;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(74, 50, 36, 0.28) 0 10px,
+      rgba(92, 64, 51, 0.12) 10px 20px
+    ),
+    linear-gradient(180deg, #7a5235 0%, #4a3224 100%);
+  border: 4px solid #c4a574;
+  border-radius: 10px;
+  box-shadow: 5px 7px 0 rgba(61, 42, 34, 0.28);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.plot:hover,
+.plot:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+  outline: none;
+}
+
+.plot.is-selected {
+  border-color: var(--color-gold);
+  box-shadow:
+    0 0 0 3px rgba(232, 195, 106, 0.45),
+    5px 7px 0 rgba(61, 42, 34, 0.28);
+}
+
+.plot--empty {
+  border-style: dashed;
+  opacity: 0.82;
+}
+
+.plot__mark {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.plot__name {
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 /*  サイドバー　(画面左側 */
 .sidebar {
   position: fixed;
   top: var(--header-height);
   left: calc(-1 * var(--sidebar-width));
-  width: var(--sidebar-width);          /* ← 100% を元に戻す */
+  z-index: 15;
+  width: var(--sidebar-width);
   height: calc(100dvh - var(--header-height));
   padding: var(--sidebar-padding);
-  background-color: var(--color-bg-sidebar);
+  background:
+    linear-gradient(180deg, #8b5e3c 0%, #5c3d28 100%);
   color: var(--color-text-light);
+  border-right: 4px solid var(--color-cream-dark);
   transition: left var(--transition-speed) ease;
 }
 
@@ -154,43 +385,43 @@ body {
   text-decoration: none;
 
   display: block;
-  /* padding: 15px 0 10px 15px; */
   margin: 15px 0 10px 15px;
   font-size: 18px;
 }
 
 .sidebar a:hover {
-  opacity: 0.7;
+  color: var(--color-gold);
 }
 
-/*  コンテンツボックス（サイドバーの右に表示されるダークカラーのボックス
-   - 初期状態は非表示（opacity: 0 + pointer-events: none）
-   - .active クラスが付くとフェードインして表示 */
+/*  コンテンツボックス
+   - 初期状態は非表示
+   - .active クラスが付くと表示 */
 .main {
-  flex: 1;                        /* ← 残りの幅をすべて使う */
+  flex: 1;
+  z-index: 12;
   padding: 24px 32px;
-  color: var(--color-text-light);
+  color: var(--color-text);
 
-  /* background-color は不要（サイドバーと同じ背景を共有するため） */
   visibility: hidden;
   pointer-events: none;
-  transition: visibility var(--transition-speed); /* typo も修正 */
+  transition: visibility var(--transition-speed);
 
   position: fixed;
-  top: calc(var(--header-height) + 30px);   /* 上の余白 */
-  left: calc(var(--sidebar-width) + 30px);  /* 左の余白 */
-  right: 30px;                              /* 右の余白 */
-  bottom: 30px;                             /* 下の余白 */
-  padding: 24px 32px;
-  border-radius: 4px;                       /* 角丸（お好みで） */
-  border: 2px solid var(--color-border-main);
-  background-color: var(--color-bg-sidebar);
-  color: var(--color-text-light);
+  top: calc(var(--header-height) + 30px);
+  left: 42%;
+  right: 30px;
+  bottom: 30px;
+  border-radius: 8px;
+  border: 6px solid var(--color-wood);
+  background-color: var(--color-paper);
+  box-shadow: 8px 8px 0 rgba(61, 42, 34, 0.22);
 
-  visibility: hidden;
-  pointer-events: none;
   overflow-y: auto;
   word-break: break-word;
+}
+
+body.has-sidebar .main {
+  left: calc(var(--sidebar-width) + 30px);
 }
 
 .main.active {
@@ -201,6 +432,12 @@ body {
 .main__text {
   margin: 0;
   padding: 10px 20px;
+}
+
+.main h1,
+.main h2 {
+  font-family: var(--font-display);
+  color: var(--color-soil-dark);
 }
 
 /* 連絡先・アプリ利用リンクなど、本文中の導線 */
@@ -222,4 +459,64 @@ body {
 .top-icon-size {
   width: var(--top-icon-width);
   height: var(--top-icon-hight);
+}
+
+@media (max-width: 900px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .farm.is-listing {
+    width: 100%;
+    max-width: none;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .main,
+  body.has-sidebar .main {
+    left: 16px;
+    right: 16px;
+    top: calc(var(--header-height) + 16px);
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 120px;
+  }
+
+  .header {
+    padding: 6px 12px;
+  }
+
+  .nav__list {
+    gap: 8px 12px;
+  }
+
+  .nav a:not(.nav__brand):not(.nav__social) {
+    font-size: 0.9rem;
+  }
+
+  .farm__sign {
+    padding: 18px 20px;
+  }
+
+  .plot {
+    min-height: 150px;
+  }
+
+  .farm.is-listing .plot {
+    min-height: 0;
+  }
+
+  .main {
+    border-width: 4px;
+    padding: 16px;
+  }
+
+  .main__text {
+    padding: 0;
+  }
 }

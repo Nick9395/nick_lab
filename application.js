@@ -1,12 +1,16 @@
 // application.js
 /* - HTMLのdata属性とDATAオブジェクトを使って
-     サイドバーとコンテンツを動的に切り替える */
+     サイドバーとコンテンツを動的に切り替える
+   - アプリ一覧は畝マップから各作品を開く */
 
 const sidebar     = document.getElementById("sidebar");
 const sidebarMenu = document.getElementById("sidebarMenu");
 const mainContent = document.getElementById("mainContent");
 const contentText = document.getElementById("contentText");
 const nav         = document.querySelector(".nav");
+const fieldMap    = document.getElementById("fieldMap");
+const farmView    = document.getElementById("farmView");
+const header      = document.querySelector(".header");
 
 // アプリの状態管理 - 現在開いているメニューとコンテンツキーを保持する
 const state = {
@@ -20,7 +24,59 @@ fetch("data.json")
   .then((response) => response.json()) // jsonをオブジェクトに変換
   .then((json) => {
     DATA = json; // 読み込んだデータをDATAに代入
+    renderFields(DATA.fields || []);
+  })
+  .catch(() => {
+    fieldMap.innerHTML = "<p class='farm__lead'>アプリ一覧を読み込めませんでした。</p>";
   });
+
+// ヘッダーの実高さをCSS変数へ反映する（折り返し対策）
+function syncHeaderHeight() {
+  if (!header) return;
+  document.documentElement.style.setProperty(
+    "--header-height",
+    `${header.offsetHeight}px`
+  );
+}
+
+window.addEventListener("resize", syncHeaderHeight);
+window.addEventListener("load", syncHeaderHeight);
+syncHeaderHeight();
+
+/* 畝マップを描画する
+ - @param {{ key: string, label: string, mark: string, stage: string }[]} fields */
+function renderFields(fields) {
+  fieldMap.innerHTML = fields
+    .map((field) => {
+      return `
+        <button
+          type="button"
+          class="plot plot--${field.stage}"
+          role="listitem"
+          data-field="${field.key}"
+          aria-pressed="false"
+        >
+          <span class="plot__mark" aria-hidden="true">${field.mark}</span>
+          <span class="plot__name">${field.label}</span>
+        </button>
+      `;
+    })
+    .join("");
+}
+
+function setFieldsVisible(visible) {
+  fieldMap.classList.toggle("is-visible", visible);
+  fieldMap.hidden = !visible;
+  farmView.classList.toggle("is-listing", visible);
+}
+
+function highlightPlot(contentKey) {
+  fieldMap.querySelectorAll(".plot").forEach((plot) => {
+    const selected = plot.dataset.field === contentKey;
+    plot.classList.toggle("is-selected", selected);
+    plot.setAttribute("aria-pressed", selected ? "true" : "false");
+  });
+}
 
 /* UI制御
  - ヘッダーメニューをクリックしたときの処理
@@ -30,6 +86,23 @@ fetch("data.json")
 function openMenu(menuKey, contentKey = null) {
   if (menuKey === "top") {
     closeAll();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+
+  // アプリ一覧はサイドバーではなく畝マップを開く
+  if (menuKey === "portfolio" && !contentKey) {
+    if (state.menu === "portfolio" && !state.content && fieldMap.classList.contains("is-visible")) {
+      closeAll();
+      return;
+    }
+    showFieldMap();
+    return;
+  }
+
+  // 畝から作品詳細を開く
+  if (menuKey === "portfolio" && contentKey) {
+    openField(contentKey);
     return;
   }
 
@@ -49,13 +122,45 @@ function openMenu(menuKey, contentKey = null) {
   // サイドバーを描画して表示。コンテンツボックスは一旦隠す
   renderSidebar(DATA[menuKey].menu);
   sidebar.classList.add("active");
+  document.body.classList.add("has-sidebar");
+  document.body.classList.remove("has-panel");
   mainContent.classList.remove("active");
   contentText.textContent = "";
+  setFieldsVisible(false);
+  highlightPlot(null);
 
   // コンテンツキーが指定されていれば、その項目を開く
   if (contentKey) {
     showContent(contentKey);
+  } else if (menuKey === "contact" && DATA.contact.menu[0]) {
+    // お問い合わせは項目が1つなので直接開く
+    showContent(DATA.contact.menu[0].key);
   }
+}
+
+/* 畝マップを表示する */
+function showFieldMap() {
+  sidebar.classList.remove("active");
+  mainContent.classList.remove("active");
+  document.body.classList.remove("has-sidebar", "has-panel");
+  contentText.textContent = "";
+  state.menu    = "portfolio";
+  state.content = null;
+  highlightPlot(null);
+  setFieldsVisible(true);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* 畝をクリックして作品詳細を開く */
+function openField(contentKey) {
+  if (!DATA.portfolio) return;
+
+  state.menu = "portfolio";
+  sidebar.classList.remove("active");
+  document.body.classList.remove("has-sidebar");
+  document.body.classList.add("has-panel");
+  setFieldsVisible(true);
+  showContent(contentKey);
 }
 
 /* サイドバーのメニュー項目を描画する
@@ -84,7 +189,9 @@ function showContent(contentKey) {
   if (state.content === contentKey) {
     contentText.innerHTML = "";
     mainContent.classList.remove("active");
+    document.body.classList.remove("has-panel");
     state.content = null;
+    highlightPlot(null);
     return;
   }
 
@@ -92,18 +199,26 @@ function showContent(contentKey) {
   contentText.innerHTML = Array.isArray(raw) ? raw.join("") : raw;
 
   // コンテンツを表示して状態を更新
-  // contentText.innerHTML = DATA[state.menu].content[contentKey];
   mainContent.classList.add("active");
   state.content = contentKey;
+
+  if (state.menu === "portfolio") {
+    highlightPlot(contentKey);
+  } else {
+    highlightPlot(null);
+  }
 }
 
 // サイドバーとコンテンツをすべて閉じる
 function closeAll() {
   sidebar.classList.remove("active");
   mainContent.classList.remove("active");
+  document.body.classList.remove("has-sidebar", "has-panel");
   contentText.textContent = "";
   state.menu    = null;
   state.content = null;
+  setFieldsVisible(false);
+  highlightPlot(null);
 }
 
 // イベントリスナー
@@ -119,6 +234,16 @@ nav.addEventListener("click", (event) => {
 
   event.preventDefault();
   openMenu(menuKey);
+});
+
+// 畝マップのクリック
+fieldMap.addEventListener("click", (event) => {
+  const plot = event.target.closest("[data-field]");
+  if (!plot) return;
+
+  event.preventDefault();
+  event.stopPropagation();
+  openField(plot.dataset.field);
 });
 
 // メインコンテンツ内のメニュー遷移リンク（例: 連絡先への導線）
@@ -150,8 +275,9 @@ document.addEventListener("click", (event) => {
   const isInsideSidebar = sidebar.contains(event.target);
   const isInsideNav     = nav.contains(event.target);
   const isInsideMain    = mainContent.contains(event.target);
+  const isInsideFields  = fieldMap.contains(event.target);
 
-  if (!isInsideSidebar && !isInsideNav && !isInsideMain) {
+  if (!isInsideSidebar && !isInsideNav && !isInsideMain && !isInsideFields) {
     closeAll();
   }
 });

@@ -4,48 +4,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nick Lab</title>
+    <title>Nick's farm</title>
 
     <!-- SEO -->
     <meta
       name="description"
-      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+      content="Nick's farm。Nickのポートフォリオ置き場です。日々アイディアの種を撒き、アプリを育てています。"
     />
     <meta
       name="keywords"
-      content="Nick Lab, Nick, ポートフォリオ, Webアプリ, ドット画伯, ガンバリクエスト"
+      content="Nick's farm, Nick, ポートフォリオ, Webアプリ, ドット画伯, ガンバリクエスト"
     />
     <meta name="author" content="Nick" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#151515" />
+    <meta name="theme-color" content="#6f4a2e" />
     <link rel="canonical" href="https://nick9395.github.io/nick_lab/" />
     <link rel="icon" href="images/avatar.webp" type="image/webp" />
 
     <!-- Open Graph（Facebook, LinkedIn など） -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nick Lab" />
-    <meta property="og:title" content="Nick Lab" />
+    <meta property="og:site_name" content="Nick's farm" />
+    <meta property="og:title" content="Nick's farm" />
     <meta
       property="og:description"
-      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+      content="Nickのポートフォリオ置き場です。日々アイディアの種を撒き、アプリを育てています。"
     />
     <meta property="og:url" content="https://nick9395.github.io/nick_lab/" />
     <meta
       property="og:image"
-      content="https://nick9395.github.io/nick_lab/images/top_image.webp"
+      content="https://nick9395.github.io/nick_lab/images/ranch_bg.jpg"
     />
     <meta property="og:locale" content="ja_JP" />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nick Lab" />
+    <meta name="twitter:title" content="Nick's farm" />
     <meta
       name="twitter:description"
-      content="Nickのポートフォリオ保管用サイト。学習目的で制作したWebアプリを公開しています。"
+      content="Nickのポートフォリオ置き場です。日々アイディアの種を撒き、アプリを育てています。"
     />
     <meta
       name="twitter:image"
-      content="https://nick9395.github.io/nick_lab/images/top_image.webp"
+      content="https://nick9395.github.io/nick_lab/images/ranch_bg.jpg"
     />
 
     <link rel="stylesheet" href="application.css" />
@@ -62,14 +62,14 @@
         <ul class="nav__list">
           <!-- data-menu 属性でどのメニューを開くかを管理 -->
           <li>
-            <a href="#" data-menu="top" class="nav__brand" aria-label="Nick Lab">
+            <a href="#" data-menu="top" class="nav__brand" aria-label="Nick's farm">
               <img src="images/avatar.webp" alt="" class="top-icon-size" />
-              <span>Nick Lab</span>
+              <span>Nick's farm</span>
             </a>
           </li>
-          <li><a href="#" data-menu="portfolio">portfolio</a></li>
-          <li><a href="#" data-menu="about">about</a></li>
-          <li><a href="#" data-menu="contact">contact</a></li>
+          <li><a href="#" data-menu="portfolio">アプリ一覧</a></li>
+          <li><a href="#" data-menu="about">このサイトについて</a></li>
+          <li><a href="#" data-menu="contact">お問い合わせ</a></li>
 
           <!-- 外部リンク（SNS） -->
           <li>
@@ -77,6 +77,7 @@
               href="https://x.com/"
               target="_blank"
               rel="noopener noreferrer"
+              class="nav__social"
               aria-label="X(Twitter)へ移動"
             >
               <img src="images/x-logo.webp" alt="" class="top-icon-size" />
@@ -87,6 +88,7 @@
               href="https://note.com/"
               target="_blank"
               rel="noopener noreferrer"
+              class="nav__social"
               aria-label="noteへ移動"
             >
               <img src="images/note-logo.webp" alt="" class="top-icon-size" />
@@ -97,6 +99,7 @@
               href="https://github.com/Nick9395"
               target="_blank"
               rel="noopener noreferrer"
+              class="nav__social"
               aria-label="GitHubへ移動"
             >
               <img src="images/github-logo.webp" alt="" class="top-icon-size" />
@@ -106,7 +109,19 @@
       </nav>
     </header>
 
-    <!-- サイドバー（メニュー展開時に表示） -->
+    <!-- トップの牧場看板と畝マップ -->
+    <section class="farm" id="farmView">
+      <div class="farm__sign">
+        <p class="farm__eyebrow">ニックのアプリ畑</p>
+        <h1 class="farm__title">Nick's farm</h1>
+        <p class="farm__lead">
+          Nickのポートフォリオ置き場です。<br>日々アイディアの種を撒き、アプリを育てています
+        </p>
+      </div>
+      <div class="fields" id="fieldMap" role="list" hidden></div>
+    </section>
+
+    <!-- サイドバー（このサイトについて・お問い合わせ） -->
     <aside class="sidebar" id="sidebar" aria-label="サブメニュー">
       <ul id="sidebarMenu" class="sidebar__menu"></ul>
     </aside>
