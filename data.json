@@ -4,42 +4,63 @@
       "key": "work2",
       "label": "ドット画伯",
       "crop": "トマト",
-      "mark": "🍅",
+      "mark": "images/veg_tomato.png",
       "stage": "harvest"
     },
     {
       "key": "work3",
       "label": "ガンバリクエスト",
       "crop": "かぼちゃ",
-      "mark": "🎃",
+      "mark": "images/veg_pumpkin.png",
       "stage": "harvest"
     },
     {
       "key": "work5",
       "label": "シフト メーカー",
-      "crop": "苗",
-      "mark": "🌿",
+      "crop": "にんじん",
+      "mark": "images/veg_carrot.png",
+      "stage": "seedling"
+    },
+    {
+      "key": "work6",
+      "label": "コンプラ地雷ソナー",
+      "crop": "玉ねぎ",
+      "mark": "images/veg_onion.png",
+      "stage": "seedling"
+    },
+    {
+      "key": "work7",
+      "label": "inter-Assess",
+      "crop": "ピーマン",
+      "mark": "images/veg_pepper.png",
+      "stage": "seedling"
+    },
+    {
+      "key": "work8",
+      "label": "Quad_Timers",
+      "crop": "きゅうり",
+      "mark": "images/veg_cucumber.png",
       "stage": "seedling"
     },
     {
       "key": "work1",
       "label": "ドット画伯(試作版)",
-      "crop": "ミニトマト",
-      "mark": "🌱",
+      "crop": "カブ",
+      "mark": "images/veg_turnip.png",
       "stage": "sprout"
     },
     {
       "key": "work4",
       "label": "地球破壊バクダン",
-      "crop": "ラディッシュ",
-      "mark": "🌱",
+      "crop": "麦",
+      "mark": "images/veg_wheat.png",
       "stage": "sprout"
     },
     {
       "key": "vacant",
       "label": "空き地",
       "crop": "準備中",
-      "mark": "🪵",
+      "mark": "",
       "stage": "empty"
     }
   ],
@@ -83,6 +104,9 @@
       { "key": "work3", "label": "ガンバリクエスト" },
       { "key": "work4", "label": "地球破壊バクダン" },
       { "key": "work5", "label": "シフト メーカー" },
+      { "key": "work6", "label": "コンプラ地雷ソナー" },
+      { "key": "work7", "label": "inter-Assess" },
+      { "key": "work8", "label": "Quad_Timers" },
       { "key": "vacant", "label": "空き地" }
     ],
     "content": {
@@ -177,6 +201,30 @@
         "<a href='https://shift-maker-cfd.pages.dev/'",
         "target='_blank'>シフト メーカーを利用する</a><br>",
         "<br><strong>【サンプル用アカウント】</strong><br> メールアドレス: aaaa@aaaa<br> パスワード: 11111111"
+      ],
+      "work6": [
+        "<h1>アプリ名: コンプラ地雷ソナー</h1>",
+        "<p>現在世界有数のコンプライアンス異常大国となった日本において、不毛なコンプライアンス地雷を踏まないためのアプリです。<br>嘘偽りのない素直で率直な文章表現を、コンプラ中毒な今時のニーズに適した表現に変換してくれます。<br>また、遠回し過ぎて何が言いたいのかわからん言葉を、その裏に隠された本音に変換することもできます。<br>就活やビジネス、政治家の演説などに使える...かもしれません</p>",
+        "<p>※ただいま制作途中</p>",
+        "<p>使用言語など: TypeScript, React, Next.js</p>"
+      ],
+      "work7": [
+        "<h1>アプリ名: inter-Assess</h1>",
+        "<p>就活などの面接場面で、自己PRなどが苦手なあなたへ。<br>対面での質疑応答の練習、自分とは本当はどんな人間なのだろうか？といった自己覚知と言語化を手伝ってくれるアプリです。AIが診断評価してフィードバックをくれます。</p>",
+        "<p>現在制作中</p>",
+        "<p>使用言語など: Ruby 3.4, Rails 8.1<br>",
+          "データベース: PostgreSQL 16<br>",
+          "フロントエンド: Importmap<br>",
+          "認証: Devise<br>",
+          "LLM: gpt-4o-mini<br>",
+          "音声: ブラウザ標準 Speech Synthesis / Speech Recognition<br>",
+          "テスト: Minitest<br>",
+          "インフラ: Docker, GitHub</p>"
+      ],
+      "work8": [
+        "<h1>アプリ名: Quad_Timers</h1>",
+        "<p>ふつうのカウントアップタイマー, ストップウォッチ, ポモドーロタイマー, カスタムタイマー, 4種類のタイマーが使えます。ネイティブアプリなのでスマホでもパソコンでもタブレットでも使用可能。</p>",
+        "<p>現在制作中</p>"
       ],
       "vacant": [
         "<h1>空き地</h1>",
