@@ -468,6 +468,22 @@ body.has-sidebar .main {
   color: var(--color-content-link-hover);
 }
 
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  margin: 16px 0;
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .top-icon-size {
   width: var(--top-icon-width);
   height: var(--top-icon-hight);
